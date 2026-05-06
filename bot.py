@@ -21,11 +21,11 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if not message.content.startswith("!diss"):
+    if not message.content.startswith("!디스"):
         return
 
     if not message.mentions:
-        await message.channel.send("디스할 사람을 멘션해줘! 예: `!diss @친구`")
+        await message.channel.send("디스할 사람을 멘션해줘! 예: `!디스 @친구`")
         return
 
     target = message.mentions[0]
