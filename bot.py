@@ -31,15 +31,17 @@ async def on_message(message):
     target = message.mentions[0]
 
     history = []
-    async for msg in message.channel.history(limit=30):
+    async for msg in message.channel.history(limit=200):
         if msg.author == target and msg.content:
             history.append(msg.content)
+            if len(history) == 20:
+                break
 
     if not history:
         await message.channel.send(f"{target.display_name}은 최근에 아무 말도 안 했네. 디스할 게 없어!")
         return
 
-    recent_messages = "\n".join(reversed(history[:10]))
+    recent_messages = "\n".join(reversed(history))
 
     prompt = f"""너는 친구들끼리 장난으로 서로 디스하는 디스코드 봇이야.
 아래는 {target.display_name}이 최근에 한 말들이야:
